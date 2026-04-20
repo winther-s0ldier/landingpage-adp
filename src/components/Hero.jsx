@@ -32,7 +32,7 @@ export default function Hero() {
 
                 {/* Main Heading */}
                 <div className="mt-10 w-full mb-12 lg:mb-20">
-                    <h1 className="text-[clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-[0.95] tracking-[-0.04em] flex flex-col items-center gap-2">
+                    <h1 className="text-[clamp(3.25rem,12vw,4.5rem)] md:text-[clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-[0.95] tracking-[-0.04em] flex flex-col items-center gap-2">
                         <span className="hero-word block text-[var(--color-text-1)]" style={{ animationDelay: '0.2s' }}>
                             Product
                         </span>

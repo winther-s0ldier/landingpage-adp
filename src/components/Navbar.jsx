@@ -29,7 +29,11 @@ export default function Navbar({ lenisRef }) {
             <div className="flex w-full items-center justify-between px-6 py-8 sm:px-10">
                 <div className="flex flex-1 justify-start">
                     <a href="/" className="flex items-center">
-                        <span className="text-xl sm:text-[22px] font-extrabold tracking-[0.25em] text-[var(--color-text-1)] pl-2">ADOPSHUN</span>
+                        <img 
+                            src="/logo-t.png" 
+                            alt="ADOPSHUN" 
+                            className="h-14 w-auto transition-transform duration-300 hover:scale-105"
+                        />
                     </a>
                 </div>
 

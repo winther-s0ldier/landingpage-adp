@@ -58,7 +58,7 @@ export default function App() {
         <main className="relative min-h-screen bg-[var(--color-bg)] text-[var(--color-text-1)] w-full overflow-x-hidden flex flex-col items-center">
             {/* Global Fixed Watermark */}
             <div className="pointer-events-none fixed inset-0 flex items-center justify-center overflow-hidden z-[0] w-full px-4">
-                <span className="select-none text-[clamp(8rem,16vw,25rem)] font-black uppercase tracking-[-0.08em] text-[rgba(20,33,61,0.07)] leading-none whitespace-nowrap">
+                <span className="select-none text-[clamp(4rem,18vw,8rem)] md:text-[clamp(8rem,16vw,25rem)] font-black uppercase tracking-[-0.08em] text-[rgba(20,33,61,0.07)] leading-none whitespace-nowrap">
                     ADOPSHUN
                 </span>
             </div>

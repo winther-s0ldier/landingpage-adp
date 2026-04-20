@@ -59,28 +59,28 @@ export default function CTA() {
                             </p>
                         </div>
                         
-                        <h2 className="text-[clamp(3.5rem,7vw,6rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-[var(--color-text-1)]">
+                        <h2 className="text-[clamp(2.5rem,8vw,6rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-[var(--color-text-1)]">
                             Stop writing SQL. <br />
                             <span className="font-['DM_Serif_Display',serif] font-normal italic text-[var(--color-gold)]">Start getting answers.</span>
                         </h2>
                         
-                        <p className="mt-8 text-xl leading-relaxed text-[var(--color-text-2)] max-w-xl">
+                        <p className="mt-8 text-lg sm:text-xl leading-relaxed text-[var(--color-text-2)] max-w-xl">
                             Join the waitlist for a lighter, faster way to turn product data into executive decisions.
                         </p>
 
                         <form className="mt-12 mx-auto w-full max-w-xl group relative" onSubmit={handleSubmit}>
-                            <div className="flex h-[56px] w-full items-stretch rounded-lg border border-[rgba(20,33,61,0.15)] bg-white overflow-hidden shadow-sm transition-all focus-within:border-[var(--color-orange)] focus-within:shadow-md">
+                            <div className="flex flex-col sm:flex-row h-auto sm:h-[56px] w-full items-stretch rounded-lg border border-[rgba(20,33,61,0.15)] bg-white overflow-hidden shadow-sm transition-all focus-within:border-[var(--color-orange)] focus-within:shadow-md gap-2 sm:gap-0 p-2 sm:p-0">
                                 <input
                                     type="email"
                                     placeholder="Enter your email"
                                     required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="min-w-0 flex-1 bg-transparent px-8 text-[15px] text-[var(--color-text-1)] outline-none placeholder:text-[var(--color-text-3)]"
+                                    className="min-w-0 flex-1 bg-transparent px-4 py-3 sm:py-0 sm:px-8 text-[15px] text-[var(--color-text-1)] outline-none placeholder:text-[var(--color-text-3)] rounded-md sm:rounded-none"
                                 />
                                 <button
                                     type="submit"
-                                    className="shrink-0 inline-flex items-center justify-center whitespace-nowrap bg-[var(--color-orange)] px-10 text-[14px] font-bold text-white tracking-wide transition-all duration-300 hover:bg-[#e05a2d]"
+                                    className="shrink-0 inline-flex items-center justify-center whitespace-nowrap bg-[var(--color-orange)] px-6 py-3 sm:py-0 sm:px-10 text-[14px] font-bold text-white tracking-wide transition-all duration-300 hover:bg-[#e05a2d] rounded-md sm:rounded-none"
                                 >
                                     Early Access
                                 </button>
