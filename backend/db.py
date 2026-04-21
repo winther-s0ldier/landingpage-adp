@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from .config import get_settings
+from config import get_settings
 
 
 engine: AsyncEngine | None = None
