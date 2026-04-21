@@ -9,9 +9,9 @@ from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from .config import get_settings
-from .db import close_engine, get_session, init_engine, verify_database
-from .schemas import WaitlistSignup
+from config import get_settings
+from db import close_engine, get_session, init_engine, verify_database
+from schemas import WaitlistSignup
 
 
 @asynccontextmanager
