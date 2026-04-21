@@ -50,16 +50,16 @@ export default function Features() {
                     >
                         {features.map((feature, idx) => (
                             <ScrollStackItem key={feature.title}>
-                                <div className="flex items-center gap-4 mb-6">
-                                    <span className="flex items-center justify-center h-10 w-10 min-w-[2.5rem] rounded-full bg-[#f26a3d]/10 text-[#f26a3d] font-black text-lg">
+                                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                                    <span className="flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 min-w-[2rem] sm:min-w-[2.5rem] rounded-full bg-[#f26a3d]/10 text-[#f26a3d] font-black text-base sm:text-lg">
                                         {idx + 1}
                                     </span>
-                                    <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-3)]">{feature.eyebrow}</p>
+                                    <p className="text-[10px] sm:text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-3)]">{feature.eyebrow}</p>
                                 </div>
-                                <h3 className="text-3xl sm:text-[2.75rem] font-semibold leading-[1.1] tracking-[-0.04em] text-[var(--color-text-1)] max-w-2xl text-left">
+                                <h3 className="text-xl sm:text-2xl md:text-[2.75rem] font-semibold leading-[1.2] sm:leading-[1.1] tracking-[-0.04em] text-[var(--color-text-1)] max-w-2xl text-left">
                                     {feature.title}
                                 </h3>
-                                <p className="mt-5 text-[1.15rem] leading-relaxed text-[var(--color-text-2)] max-w-2xl text-left">
+                                <p className="mt-3 sm:mt-5 text-[0.95rem] sm:text-[1.15rem] leading-relaxed text-[var(--color-text-2)] max-w-2xl text-left font-medium">
                                     {feature.body}
                                 </p>
                             </ScrollStackItem>
