@@ -49,21 +49,19 @@ export default function Features() {
                         rotationAmount={0}
                     >
                         {features.map((feature, idx) => (
-                            <ScrollStackItem key={feature.title} itemClassName="flex justify-center">
-                                <article className="flex flex-col items-start text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2rem] w-full max-w-4xl h-auto min-h-[300px]">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <span className="flex items-center justify-center h-10 w-10 rounded-full bg-[var(--color-orange)]/10 text-[var(--color-orange)] font-black text-lg">
-                                            {idx + 1}
-                                        </span>
-                                        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-3)]">{feature.eyebrow}</p>
-                                    </div>
-                                    <h3 className="text-3xl sm:text-4xl font-semibold leading-tight tracking-[-0.04em] text-[var(--color-text-1)] max-w-2xl">
-                                        {feature.title}
-                                    </h3>
-                                    <p className="mt-5 text-[1.1rem] sm:text-lg leading-relaxed text-[var(--color-text-2)] max-w-xl">
-                                        {feature.body}
-                                    </p>
-                                </article>
+                            <ScrollStackItem key={feature.title}>
+                                <div className="flex items-center gap-4 mb-6">
+                                    <span className="flex items-center justify-center h-10 w-10 min-w-[2.5rem] rounded-full bg-[#f26a3d]/10 text-[#f26a3d] font-black text-lg">
+                                        {idx + 1}
+                                    </span>
+                                    <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-3)]">{feature.eyebrow}</p>
+                                </div>
+                                <h3 className="text-3xl sm:text-[2.75rem] font-semibold leading-[1.1] tracking-[-0.04em] text-[var(--color-text-1)] max-w-2xl text-left">
+                                    {feature.title}
+                                </h3>
+                                <p className="mt-5 text-[1.15rem] leading-relaxed text-[var(--color-text-2)] max-w-2xl text-left">
+                                    {feature.body}
+                                </p>
                             </ScrollStackItem>
                         ))}
                     </ScrollStack>

@@ -57,17 +57,15 @@ const ScrollStack = ({
     }
   }, [useWindowScroll]);
 
-  const getElementOffset = useCallback(
-    element => {
-      if (useWindowScroll) {
-        const rect = element.getBoundingClientRect();
-        return rect.top + window.scrollY;
-      } else {
-        return element.offsetTop;
-      }
-    },
-    [useWindowScroll]
-  );
+  const getElementOffset = useCallback(element => {
+    let top = 0;
+    let el = element;
+    while (el) {
+      top += el.offsetTop || 0;
+      el = el.offsetParent;
+    }
+    return top;
+  }, []);
 
   const updateCardTransforms = useCallback(() => {
     if (!cardsRef.current.length || isUpdatingRef.current) return;
@@ -203,7 +201,6 @@ const ScrollStack = ({
       card.style.webkitPerspective = '1000px';
     });
 
-    // Start passive animation loop instead of conflicting Lenis setup
     const loop = () => {
       updateCardTransforms();
       animationFrameRef.current = requestAnimationFrame(loop);
