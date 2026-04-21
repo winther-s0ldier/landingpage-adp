@@ -14,13 +14,13 @@ export default function WhatWeDo() {
     return (
         <section className="w-full flex flex-col items-center justify-center px-6 py-24 sm:px-8 lg:px-10 lg:py-32" id="about">
             <div className="w-full max-w-5xl flex flex-col items-center text-center">
-                <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[var(--color-orange)]">What we do</p>
+                <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--color-orange)]">What we do</p>
                 <h2 className="mt-6 text-[clamp(3.5rem,7vw,6.5rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-[var(--color-text-1)]">
                     Your data, <br className="hidden sm:block" />
                     <span className="font-['DM_Serif_Display',serif] font-normal italic text-[var(--color-gold)]">fully analyzed</span>{' '}
                     in minutes.
                 </h2>
-                <div className="mt-12 flex flex-col items-center gap-6">
+                <div style={{ marginTop: '4rem' }} className="flex flex-col items-center gap-6">
                     <p className="max-w-2xl text-[clamp(1.15rem,1.5vw,1.35rem)] leading-relaxed text-[var(--color-text-2)]">
                         Adopshun is a dedicated B2B intelligence layer designed to accelerate internal analysis pipelines. Most product teams do not need more dashboards; they need a system that can read raw data, understand what matters, and return a clear strategic narrative with evidence behind it.
                     </p>
@@ -30,7 +30,7 @@ export default function WhatWeDo() {
                 </div>
 
                 {/* Vertical Divider Line */}
-                <div className="my-10 h-16 w-px bg-gradient-to-b from-[var(--color-border)] to-transparent" />
+                <div style={{ margin: '6rem 0' }} className="h-16 w-px bg-gradient-to-b from-[var(--color-border)] to-transparent" />
 
                 <div className="w-full">
                     <div className="grid gap-10 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[var(--color-border)] border-y border-[var(--color-border)] py-12">
@@ -45,7 +45,7 @@ export default function WhatWeDo() {
                     <div className="mt-20 grid gap-10 lg:grid-cols-3 text-center">
                         {highlights.map((item, index) => (
                             <div key={item} className="flex flex-col items-center">
-                                <div className="text-[13px] font-bold uppercase tracking-[0.2em] text-[var(--color-orange)]">
+                                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--color-orange)]">
                                     0{index + 1}
                                 </div>
                                 <p className="mt-4 text-[17px] leading-relaxed text-[var(--color-text-1)] border-t border-[var(--color-border)] pt-4 w-full">{item}</p>

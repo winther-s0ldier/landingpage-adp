@@ -1,3 +1,5 @@
+import ScrollStack, { ScrollStackItem } from './ScrollStack'
+
 const features = [
     {
         eyebrow: 'Behavioural analytics',
@@ -25,27 +27,46 @@ export default function Features() {
     return (
         <section className="w-full flex flex-col items-center justify-center px-6 py-20 sm:px-8 lg:px-10 lg:py-28" id="features">
             <div className="w-full max-w-4xl flex flex-col items-center text-center">
-                <div className="mb-20 w-full flex flex-col items-center">
+                <div style={{ marginBottom: '8rem' }} className="w-full flex flex-col items-center">
                     <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[var(--color-orange)]">Platform capabilities</p>
                     <h2 className="mt-6 text-[clamp(3.5rem,7vw,6rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-[var(--color-text-1)]">
                         30+ analyses. <br />
                         <span className="font-['DM_Serif_Display',serif] font-normal italic text-[var(--color-gold)]">Zero setup.</span>
                     </h2>
-                    <p className="mx-auto mt-6 max-w-2xl text-[1.15rem] leading-relaxed text-[var(--color-text-2)]">
+                    <p style={{ marginTop: '3rem' }} className="mx-auto max-w-2xl text-[1.15rem] leading-relaxed text-[var(--color-text-2)]">
                         From distribution profiling to sequential pattern mining — each analysis is selected, executed, and validated automatically based on your dataset.
                     </p>
                 </div>
 
-                <div className="w-full flex flex-col gap-20">
-                    {features.map((feature) => (
-                        <article key={feature.title} className="flex flex-col items-center px-4">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-3)] mb-4">{feature.eyebrow}</p>
-                            <h3 className="text-3xl sm:text-4xl font-semibold leading-tight tracking-[-0.04em] text-[var(--color-text-1)] max-w-2xl">
-                                {feature.title}
-                            </h3>
-                            <p className="mt-5 text-lg leading-relaxed text-[var(--color-text-2)] max-w-xl">{feature.body}</p>
-                        </article>
-                    ))}
+                <div className="w-full relative mx-auto max-w-5xl">
+                    <ScrollStack 
+                        useWindowScroll={true} 
+                        itemScale={0.04} 
+                        baseScale={0.88} 
+                        stackPosition="15%"
+                        blurAmount={1.5}
+                        className="overflow-visible !h-auto"
+                        rotationAmount={0}
+                    >
+                        {features.map((feature, idx) => (
+                            <ScrollStackItem key={feature.title} itemClassName="flex justify-center">
+                                <article className="flex flex-col items-start text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2rem] w-full max-w-4xl h-auto min-h-[300px]">
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <span className="flex items-center justify-center h-10 w-10 rounded-full bg-[var(--color-orange)]/10 text-[var(--color-orange)] font-black text-lg">
+                                            {idx + 1}
+                                        </span>
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-3)]">{feature.eyebrow}</p>
+                                    </div>
+                                    <h3 className="text-3xl sm:text-4xl font-semibold leading-tight tracking-[-0.04em] text-[var(--color-text-1)] max-w-2xl">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="mt-5 text-[1.1rem] sm:text-lg leading-relaxed text-[var(--color-text-2)] max-w-xl">
+                                        {feature.body}
+                                    </p>
+                                </article>
+                            </ScrollStackItem>
+                        ))}
+                    </ScrollStack>
                 </div>
             </div>
         </section>

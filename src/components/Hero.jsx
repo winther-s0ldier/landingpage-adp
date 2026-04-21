@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import MagneticButton from './MagneticButton'
 
-export default function Hero() {
+export default function Hero({ lenisRef }) {
     const [fadeIn, setFadeIn] = useState(false)
 
     useEffect(() => {
@@ -18,8 +17,17 @@ export default function Hero() {
         'border border-white/10',
     ].join(' ')
 
+    function scrollToCta() {
+        const target = document.querySelector('#cta')
+        if (target && lenisRef?.current) {
+            lenisRef.current.scrollTo(target, { offset: -40, duration: 1.3 })
+        } else if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+    }
+
     return (
-        <section className="relative overflow-hidden px-6 pb-24 pt-32 sm:px-8 lg:px-10 lg:pb-32 lg:pt-40 flex flex-col items-center min-h-[90vh] justify-center">
+        <section className="relative overflow-hidden px-6 pb-24 pt-48 sm:px-8 lg:px-10 lg:pb-32 flex flex-col items-center min-h-[90vh] justify-start">
             {/* Background elements */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(242,106,61,0.08),transparent_40%),radial-gradient(circle_at_80%_20%,rgba(216,142,97,0.05),transparent_30%)]" />
 
@@ -30,9 +38,9 @@ export default function Hero() {
                     style={{ animationDelay: '0.1s' }}
                 />
 
-                {/* Main Heading */}
-                <div className="mt-10 w-full mb-12 lg:mb-20">
-                    <h1 className="text-[clamp(3.25rem,12vw,4.5rem)] md:text-[clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-[0.95] tracking-[-0.04em] flex flex-col items-center gap-2">
+                {/* Main Heading — using inline style to bypass any potential Tailwind compiler issues */}
+                <div style={{ marginTop: '9rem' }} className="w-full mb-10 lg:mb-16">
+                    <h1 className="text-[clamp(3.25rem,12vw,4.5rem)] md:text-[clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-[0.95] tracking-[-0.04em] flex flex-col items-center gap-6 md:gap-8">
                         <span className="hero-word block text-[var(--color-text-1)]" style={{ animationDelay: '0.2s' }}>
                             Product
                         </span>
@@ -69,14 +77,13 @@ export default function Hero() {
                     className="hero-copy mt-12 mb-4 flex justify-center w-full relative z-20"
                     style={{ animationDelay: '0.8s' }}
                 >
-                    <a
-                        href="http://13.235.24.63:8000/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <button
+                        type="button"
+                        onClick={scrollToCta}
                         className={ctaClass}
                     >
                         <span className="text-white brightness-200">Try Adopshun</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>

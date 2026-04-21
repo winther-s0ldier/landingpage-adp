@@ -8,7 +8,6 @@ import Features from './components/Features'
 import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
-
 export default function App() {
   const lenisRef = useRef(null)
 
@@ -65,7 +64,7 @@ export default function App() {
 
             <Navbar lenisRef={lenisRef} />
             <div className="flex flex-col items-center justify-center w-full gap-24 lg:gap-40 relative z-10">
-                <Hero />
+                <Hero lenisRef={lenisRef} />
                 <Marquee />
                 <WhatWeDo />
                 <Pipeline />
