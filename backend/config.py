@@ -8,6 +8,7 @@ from functools import lru_cache
 DEFAULT_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://main.dzke0dptts65w.amplifyapp.com",
 ]
 
 
