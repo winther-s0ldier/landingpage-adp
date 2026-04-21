@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000').replace(/\/$/, '')
 
@@ -6,26 +7,14 @@ export default function CTA() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [status, setStatus] = useState('idle')
-    const [message, setMessage] = useState('')
-    const [toastVisible, setToastVisible] = useState(false)
-    const [toastFading, setToastFading] = useState(false)
-
-    useEffect(() => {
-        if (!message) return
-        setToastVisible(true)
-        setToastFading(false)
-        const fadeTimer = setTimeout(() => setToastFading(true), 2600)
-        const hideTimer = setTimeout(() => { setToastVisible(false); setMessage('') }, 3200)
-        return () => { clearTimeout(fadeTimer); clearTimeout(hideTimer) }
-    }, [message])
 
     async function handleSubmit(e) {
         e.preventDefault()
         const normalizedName = name.trim()
         const normalizedEmail = email.trim().toLowerCase()
-        if (!normalizedName) { setStatus('error'); setMessage('Please enter your name.'); return }
-        if (!normalizedEmail || !normalizedEmail.includes('@')) { setStatus('error'); setMessage('Please enter a valid email address.'); return }
-        setStatus('loading'); setMessage('')
+        if (!normalizedName) { setStatus('error'); toast.error('Please enter your name.'); return }
+        if (!normalizedEmail || !normalizedEmail.includes('@')) { setStatus('error'); toast.error('Please enter a valid email address.'); return }
+        setStatus('loading')
         try {
             const response = await fetch(`${API_BASE_URL}/api/waitlist`, {
                 method: 'POST',
@@ -35,11 +24,14 @@ export default function CTA() {
             const data = await response.json()
             if (!response.ok) throw new Error(data.error || 'Something went wrong. Please try again.')
             setStatus('success')
-            setMessage("You're on the list! Our team will reach out soon.")
+            toast.success("You're on the list! Our team will reach out soon.")
             setName(''); setEmail('')
         } catch (error) {
             setStatus('error')
-            setMessage(error.message || 'Something went wrong. Please try again.')
+            const msg = (error.message && error.message !== 'Failed to fetch')
+                ? error.message
+                : 'Connection error. Please check your network and try again.'
+            toast.error(msg)
         }
     }
 
@@ -216,46 +208,6 @@ export default function CTA() {
 
                 </form>
             </section>
-
-            {/* Floating toast popup — fades out after 3s */}
-            {toastVisible && (
-                <div
-                    style={{
-                        position: 'fixed',
-                        bottom: '2rem',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        zIndex: 9999,
-                        transition: 'opacity 0.6s ease',
-                        opacity: toastFading ? 0 : 1,
-                        pointerEvents: 'none',
-                    }}
-                    className={`px-6 py-4 text-sm font-semibold text-center rounded-2xl shadow-xl border ${
-                        status === 'success'
-                            ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
-                            : 'bg-red-50 border-red-200 text-red-700'
-                    }`}
-                >
-                    {message}
-                </div>
-            )}
-
-            {/* Trust badges — well below the card */}
-            <div style={{ marginTop: '2rem' }} className="flex items-center justify-center gap-6 text-[11px] font-bold uppercase tracking-widest text-[var(--color-text-2)] opacity-70">
-                <span className="inline-flex items-center gap-2">
-                    <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Free during beta
-                </span>
-                <span className="w-1 h-1 rounded-full bg-current opacity-50" />
-                <span className="inline-flex items-center gap-2">
-                    <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Executive summary included
-                </span>
-            </div>
 
         </div>
     )
