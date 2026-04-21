@@ -34,6 +34,8 @@ app.add_middleware(
 )
 
 
+@app.post("/")
+@app.post("/waitlist")
 @app.post("/api/waitlist")
 async def create_waitlist_entry(
     payload: WaitlistSignup,
