@@ -9,7 +9,7 @@ import Features from './components/Features'
 import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
-import LiquidEther from './components/LiquidEther'
+import LightRays from './components/LightRays'
 
 export default function App() {
   const lenisRef = useRef(null)
@@ -57,15 +57,19 @@ export default function App() {
   }, [])
 
     return (
-        <div className="relative min-h-screen bg-[#02020a] text-[var(--color-text-1)] selection:bg-[rgba(129,140,248,0.3)]">
-            {/* Brightened Liquid Ether Background */}
-            <div className="fixed inset-0 z-0 opacity-70 mix-blend-screen">
-                <LiquidEther 
-                    colors={['#4f46e5', '#9333ea', '#06b6d4']}
-                    mouseForce={15}
-                    autoSpeed={0.5}
-                    resolution={0.5}
-                    autoIntensity={2.5}
+        <div className="relative min-h-screen bg-[#02020a] text-[var(--color-text-1)] selection:bg-[rgba(129,140,248,0.3)] overflow-x-hidden">
+            {/* Ultra-Light LightRays Background (Replacing LiquidEther for Performance) */}
+            <div className="fixed inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none">
+                <LightRays
+                    raysOrigin="top-center"
+                    raysColor="#06b6d4"
+                    raysSpeed={0.6}
+                    lightSpread={0.8}
+                    rayLength={1.8}
+                    followMouse={true}
+                    mouseInfluence={0.12}
+                    noiseAmount={0.08}
+                    distortion={0.04}
                 />
             </div>
 
