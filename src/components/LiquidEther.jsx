@@ -7,11 +7,11 @@ export default function LiquidEther({
   cursorSize = 100,
   isViscous = false,
   viscous = 30,
-  iterationsViscous = 32,
-  iterationsPoisson = 32,
+  iterationsViscous = 16,
+  iterationsPoisson = 16,
   dt = 0.014,
   BFECC = true,
-  resolution = 0.5,
+  resolution = 0.3,
   isBounce = false,
   colors = ['#5227FF', '#FF9FFC', '#B497CF'],
   style = {},
@@ -95,8 +95,7 @@ export default function LiquidEther({
         this.renderer.domElement.style.width = '100%';
         this.renderer.domElement.style.height = '100%';
         this.renderer.domElement.style.display = 'block';
-        this.clock = new THREE.Clock();
-        this.clock.start();
+        this.lastTime = performance.now();
       }
       resize() {
         if (!this.container) return;
@@ -107,7 +106,9 @@ export default function LiquidEther({
         if (this.renderer) this.renderer.setSize(this.width, this.height, false);
       }
       update() {
-        this.delta = this.clock.getDelta();
+        const now = performance.now();
+        this.delta = Math.min((now - this.lastTime) / 1000, 0.032); // Cap delta to avoid jumps
+        this.lastTime = now;
         this.time += this.delta;
       }
     }
@@ -1042,7 +1043,12 @@ export default function LiquidEther({
     };
     applyOptionsFromProps();
 
-    webgl.start();
+    // Defer start to improve TBT (Total Blocking Time)
+    const startTimeout = setTimeout(() => {
+      if (webglRef.current && isVisibleRef.current && !document.hidden) {
+        webglRef.current.start();
+      }
+    }, 1500);
 
     // IntersectionObserver to pause rendering when not visible
     const io = new IntersectionObserver(
@@ -1074,6 +1080,7 @@ export default function LiquidEther({
     resizeObserverRef.current = ro;
 
     return () => {
+      clearTimeout(startTimeout);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if (resizeObserverRef.current) {
         try {

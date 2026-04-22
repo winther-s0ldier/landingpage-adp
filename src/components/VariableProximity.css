@@ -1,6 +1,6 @@
 .variable-proximity {
-  /* We want to maintain our font choice but support variable settings */
   display: inline-block;
+  will-change: font-variation-settings;
 }
 
 .sr-only {

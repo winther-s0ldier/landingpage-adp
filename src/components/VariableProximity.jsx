@@ -104,10 +104,14 @@ const VariableProximity = forwardRef((props, ref) => {
     if (!containerRef?.current) return;
     const containerRect = containerRef.current.getBoundingClientRect();
     const { x, y } = mousePositionRef.current;
+    
+    // Skip if mouse hasn't moved significantly or at all
     if (lastPositionRef.current.x === x && lastPositionRef.current.y === y) {
       return;
     }
     lastPositionRef.current = { x, y };
+
+    const radiusSq = radius * radius;
 
     letterRefs.current.forEach((letterRef, index) => {
       if (!letterRef) return;
@@ -116,18 +120,19 @@ const VariableProximity = forwardRef((props, ref) => {
       const letterCenterX = rect.left + rect.width / 2 - containerRect.left;
       const letterCenterY = rect.top + rect.height / 2 - containerRect.top;
 
-      const distance = calculateDistance(
-        mousePositionRef.current.x,
-        mousePositionRef.current.y,
-        letterCenterX,
-        letterCenterY
-      );
+      const dx = x - letterCenterX;
+      const dy = y - letterCenterY;
+      const distanceSq = dx * dx + dy * dy;
 
-      if (distance >= radius) {
-        letterRef.style.fontVariationSettings = fromFontVariationSettings;
+      // Optimization: use squared distance to avoid Math.sqrt if outside radius
+      if (distanceSq >= radiusSq) {
+        if (letterRef.style.fontVariationSettings !== fromFontVariationSettings) {
+          letterRef.style.fontVariationSettings = fromFontVariationSettings;
+        }
         return;
       }
 
+      const distance = Math.sqrt(distanceSq);
       const falloffValue = calculateFalloff(distance);
       const newSettings = parsedSettings
         .map(({ axis, fromValue, toValue }) => {
@@ -136,8 +141,10 @@ const VariableProximity = forwardRef((props, ref) => {
         })
         .join(', ');
 
-      interpolatedSettingsRef.current[index] = newSettings;
-      letterRef.style.fontVariationSettings = newSettings;
+      if (letterRef.style.fontVariationSettings !== newSettings) {
+        interpolatedSettingsRef.current[index] = newSettings;
+        letterRef.style.fontVariationSettings = newSettings;
+      }
     });
   });
 
