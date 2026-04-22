@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import DoodleLayer from './DoodleLayer'
 
 export default function Hero({ lenisRef }) {
     const [fadeIn, setFadeIn] = useState(false)
@@ -28,6 +29,7 @@ export default function Hero({ lenisRef }) {
 
     return (
         <section className="relative overflow-hidden px-6 pb-24 pt-48 sm:px-8 lg:px-10 lg:pb-32 flex flex-col items-center min-h-[90vh] justify-start">
+            <DoodleLayer />
             {/* Background elements */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(242,106,61,0.08),transparent_40%),radial-gradient(circle_at_80%_20%,rgba(216,142,97,0.05),transparent_30%)]" />
 
@@ -38,24 +40,23 @@ export default function Hero({ lenisRef }) {
                     style={{ animationDelay: '0.1s' }}
                 />
 
-                {/* Main Heading — using inline style to bypass any potential Tailwind compiler issues */}
+                {/* Main Heading */}
                 <div style={{ marginTop: '9rem' }} className="w-full mb-10 lg:mb-16">
-                    <h1 className="text-[clamp(3.25rem,12vw,4.5rem)] md:text-[clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-[0.95] tracking-[-0.04em] flex flex-col items-center gap-6 md:gap-8">
+                    <h1 className="text-[clamp(3.5rem,10vw,5.5rem)] lg:text-[clamp(5rem,8vw,8.5rem)] font-extrabold leading-[1] tracking-[-0.04em] flex flex-col items-center">
                         <span className="hero-word block text-[var(--color-text-1)]" style={{ animationDelay: '0.2s' }}>
-                            Product
+                            Growth
                         </span>
                         <span
                             className="hero-word block font-['DM_Serif_Display',serif] font-normal italic"
                             style={{
-                                animationDelay: '0.3s',
+                                animationDelay: '0.4s',
                                 color: 'transparent',
-                                WebkitTextStroke: '2px var(--color-orange)',
+                                WebkitTextStroke: '1px var(--color-orange)',
+                                marginTop: '-0.15em',
+                                letterSpacing: '-0.02em'
                             }}
                         >
-                            Adoption
-                        </span>
-                        <span className="hero-word block text-[var(--color-text-1)] pb-[0.2em]" style={{ animationDelay: '0.4s' }}>
-                            Simplified.
+                            OS
                         </span>
                     </h1>
                 </div>

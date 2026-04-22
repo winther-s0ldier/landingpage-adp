@@ -9,6 +9,7 @@ import Features from './components/Features'
 import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import DoodleLayer from './components/DoodleLayer'
 export default function App() {
   const lenisRef = useRef(null)
 
