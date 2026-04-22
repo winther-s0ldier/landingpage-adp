@@ -62,8 +62,8 @@ export default function App() {
             <div className="fixed inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none">
                 <LightRays
                     raysOrigin="top-center"
-                    raysColor="#06b6d4"
-                    raysSpeed={0.6}
+                    raysColor="#ffffff"
+                    raysSpeed={0.5}
                     lightSpread={0.8}
                     rayLength={1.8}
                     followMouse={true}

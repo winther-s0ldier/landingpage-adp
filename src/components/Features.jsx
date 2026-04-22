@@ -51,7 +51,7 @@ export default function Features() {
                         {features.map((feature, idx) => (
                             <ScrollStackItem key={feature.title}>
                                 <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                                    <span className="flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 min-w-[2rem] sm:min-w-[2.5rem] rounded-full bg-[#f26a3d]/10 text-[#f26a3d] font-black text-base sm:text-lg">
+                                    <span className="flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 min-w-[2rem] sm:min-w-[2.5rem] rounded-full bg-[#a855f7]/10 text-[#a855f7] font-black text-base sm:text-lg">
                                         {idx + 1}
                                     </span>
                                     <p className="text-[10px] sm:text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-3)]">{feature.eyebrow}</p>
