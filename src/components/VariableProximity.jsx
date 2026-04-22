@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef, useEffect } from 'react';
+import { forwardRef, useMemo, useRef, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import './VariableProximity.css';
 
@@ -100,8 +100,16 @@ const VariableProximity = forwardRef((props, ref) => {
     }
   };
 
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    document.fonts.ready.then(() => {
+      setFontsLoaded(true);
+    });
+  }, []);
+
   useAnimationFrame(() => {
-    if (!containerRef?.current) return;
+    if (!containerRef?.current || !fontsLoaded) return;
     const containerRect = containerRef.current.getBoundingClientRect();
     const { x, y } = mousePositionRef.current;
     

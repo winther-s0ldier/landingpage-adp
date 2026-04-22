@@ -100,7 +100,7 @@ export default function App() {
             />
             
             {/* Subtle Global Watermark */}
-            <div className="pointer-events-none fixed inset-0 flex items-center justify-center overflow-hidden z-[0] w-full px-4">
+            <div className="pointer-events-none fixed inset-0 flex items-center justify-center overflow-hidden z-[0] w-full px-4 transform-gpu translate-z-0 will-change-opacity">
                 <span className="select-none text-[clamp(4rem,18vw,8rem)] md:text-[clamp(8rem,16vw,25rem)] font-black uppercase tracking-[-0.08em] text-[rgba(255,255,255,0.03)] leading-none whitespace-nowrap">
                     ADOPSHUN
                 </span>
