@@ -10,7 +10,7 @@ export default function Navbar({ lenisRef }) {
     const [scrolled, setScrolled] = useState(false)
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 40)
+        const onScroll = () => setScrolled(window.scrollY > 20)
         window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
@@ -25,24 +25,24 @@ export default function Navbar({ lenisRef }) {
     }
 
     return (
-        <header className="absolute inset-x-0 top-0 z-50 bg-transparent transition-all duration-300">
-            <div className="flex w-full items-center justify-between px-6 py-8 sm:px-10">
+        <header className="fixed inset-x-0 top-0 z-50 w-full transition-all duration-300">
+            <div className={`flex w-full items-center justify-between px-8 py-6 sm:px-16 transition-all duration-300 ${scrolled ? 'bg-[#02020a]/90 backdrop-blur-xl py-4 shadow-none border-0' : 'bg-transparent'}`}>
                 <div className="flex flex-1 justify-start">
                     <a href="/" className="flex items-center">
                         <img 
                             src="/logo-t.png" 
                             alt="ADOPSHUN" 
-                            className="h-14 w-auto transition-transform duration-300 hover:scale-105"
+                            className="h-11 w-auto transition-all duration-300 hover:scale-105 brightness-150"
                         />
                     </a>
                 </div>
 
-                <nav className="hidden lg:flex flex-1 items-center justify-center gap-10">
+                <nav className="hidden lg:flex items-center justify-center gap-14">
                     {links.map((l) => (
                         <button
                             key={l.href}
                             onClick={() => scrollTo(l.href)}
-                            className="text-sm font-semibold text-[var(--color-text-2)] hover:text-[var(--color-text-1)] transition-colors duration-200 cursor-pointer bg-transparent border-0"
+                            className="text-[13px] font-bold uppercase tracking-widest text-white/50 hover:text-white transition-colors duration-200 cursor-pointer bg-transparent border-0"
                         >
                             {l.label}
                         </button>

@@ -9,7 +9,8 @@ import Features from './components/Features'
 import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
-import DoodleLayer from './components/DoodleLayer'
+import LiquidEther from './components/LiquidEther'
+
 export default function App() {
   const lenisRef = useRef(null)
 
@@ -56,22 +57,33 @@ export default function App() {
   }, [])
 
     return (
-        <main className="relative min-h-screen bg-[var(--color-bg)] text-[var(--color-text-1)] w-full overflow-x-hidden flex flex-col items-center">
+        <div className="relative min-h-screen bg-[#02020a] text-[var(--color-text-1)] selection:bg-[rgba(129,140,248,0.3)]">
+            {/* Brightened Liquid Ether Background */}
+            <div className="fixed inset-0 z-0 opacity-70 mix-blend-screen">
+                <LiquidEther 
+                    colors={['#4f46e5', '#9333ea', '#06b6d4']}
+                    mouseForce={15}
+                    autoSpeed={0.5}
+                    resolution={0.5}
+                    autoIntensity={2.5}
+                />
+            </div>
+
             <Toaster
                 position="bottom-center"
                 toastOptions={{
                     duration: 4000,
                     style: {
-                        background: 'rgba(255,255,255,0.92)',
+                        background: 'rgba(15, 16, 35, 0.8)',
                         backdropFilter: 'blur(16px)',
                         WebkitBackdropFilter: 'blur(16px)',
-                        border: '1px solid rgba(0,0,0,0.08)',
+                        border: '1px solid rgba(255,255,255,0.1)',
                         borderRadius: '16px',
                         padding: '14px 20px',
                         fontSize: '14px',
                         fontWeight: '600',
-                        color: '#1a1a2e',
-                        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+                        color: '#ffffff',
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
                         maxWidth: '380px',
                     },
                     success: {
@@ -82,9 +94,10 @@ export default function App() {
                     },
                 }}
             />
-            {/* Global Fixed Watermark */}
+            
+            {/* Subtle Global Watermark */}
             <div className="pointer-events-none fixed inset-0 flex items-center justify-center overflow-hidden z-[0] w-full px-4">
-                <span className="select-none text-[clamp(4rem,18vw,8rem)] md:text-[clamp(8rem,16vw,25rem)] font-black uppercase tracking-[-0.08em] text-[rgba(20,33,61,0.07)] leading-none whitespace-nowrap">
+                <span className="select-none text-[clamp(4rem,18vw,8rem)] md:text-[clamp(8rem,16vw,25rem)] font-black uppercase tracking-[-0.08em] text-[rgba(255,255,255,0.03)] leading-none whitespace-nowrap">
                     ADOPSHUN
                 </span>
             </div>
@@ -100,6 +113,6 @@ export default function App() {
                 <CTA />
                 <Footer />
             </div>
-        </main>
+        </div>
     )
 }
